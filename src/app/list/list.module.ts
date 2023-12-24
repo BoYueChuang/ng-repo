@@ -1,25 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ListRoutingModule } from './list-routing.module';
+import { ListComponent } from './list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BlockUIModule } from 'ng-block-ui';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    ListComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    ListRoutingModule,
     HttpClientModule,
     BlockUIModule.forRoot({
       message: ''
-    }),
-    HomeRoutingModule
+    })
   ]
 })
-export class HomeModule { }
+export class ListModule { }

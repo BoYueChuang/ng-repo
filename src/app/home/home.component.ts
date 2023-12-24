@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { StudentService } from '../service/student.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +10,15 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
+  @BlockUI() blockUI: NgBlockUI;
   homeForm: FormGroup;
 
-  get lastName() { return this.homeForm.get("lastName") as FormControl };
-  get firstName() { return this.homeForm.get("firstName") as FormControl };
+  get name() { return this.homeForm.get("name") as FormControl };
   get email() { return this.homeForm.get("email") as FormControl };
 
 
   constructor(
+    public _Router: Router,
     public _StudentService: StudentService,
     public _FormBuilder: FormBuilder,
   ) { }
@@ -29,8 +31,7 @@ export class HomeComponent {
   initForm() {
 
     this.homeForm = this._FormBuilder.group({
-      lastName: ['', [Validators.required]],
-      firstName: ['', [Validators.required]],
+      name: ['', [Validators.required]],
       email: ['', [Validators.required]],
     });
 
@@ -39,7 +40,11 @@ export class HomeComponent {
 
   submit() {
     if (this.homeForm.valid) {
-      this._StudentService.addStudent(this.addStudentPara()).subscribe(res => { });
+      this.blockUI.start();
+      this._StudentService.addStudent(this.addStudentPara()).subscribe(res => {
+        this._Router.navigateByUrl('/list');
+        this.blockUI.stop();
+      });
     } else {
       alert('資料輸入不完整');
     };
@@ -49,8 +54,7 @@ export class HomeComponent {
 
   addStudentPara() {
     let para = {
-      lastName: this.lastName.value,
-      firstName: this.firstName.value,
+      name: this.name.value,
       email: this.email.value
     };
 
