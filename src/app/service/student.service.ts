@@ -14,6 +14,6 @@ export class StudentService {
 
 
   public addStudent(para: any): Observable<any> {
-    return this._Http.post<any>(`http://localhost:8080/student/addStudent`, para)
+    return this._Http.post<any>(`https://ngchillmanapi.vercel.app/student/addStudent`, para)
   }
 }
