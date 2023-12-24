@@ -1,0 +1,30 @@
+<div class="content">
+    <div class="content__container">
+        <p class="content__container__text">
+            Hello
+        </p>
+
+        <ul class="content__container__list">
+            <li class="content__container__list__item">useruser</li>
+        </ul>
+    </div>
+</div>
+<form action="#" [formGroup]="homeForm">
+    <div class="content-input">
+        <div class="text-input">
+            <input type="text" name="firstName" id="firstName" placeholder=" " formControlName="firstName">
+            <label for="name">First Name</label>
+        </div>
+        <div class="text-input">
+            <input type="text" name="lastName" id="lastName" placeholder=" " formControlName="lastName">
+            <label for="name">Last Name</label>
+        </div>
+        <div class="text-input">
+            <input type="email" name="mail" id="mail" placeholder=" " formControlName="email">
+            <label for="mail">Email</label>
+        </div>
+        <div class="wrap">
+            <button class="button" (click)="submit()">Submit</button>
+        </div>
+    </div>
+</form>
