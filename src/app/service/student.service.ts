@@ -22,4 +22,8 @@ export class StudentService {
   public getStudent(): Observable<any> {
     return this._Http.get<any>(`${this.url}student/getStudent`);
   }
+
+  public getStudentDetail(id: string): Observable<any> {
+    return this._Http.get<any>(`${this.url}student/getId/${id}`);
+  }
 }

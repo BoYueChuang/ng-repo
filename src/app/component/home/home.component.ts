@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StudentService } from '../service/student.service';
+import { StudentService } from '../../service/student.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Router } from '@angular/router';
@@ -42,7 +42,7 @@ export class HomeComponent {
     if (this.homeForm.valid) {
       this.blockUI.start();
       this._StudentService.addStudent(this.addStudentPara()).subscribe(res => {
-        this._Router.navigateByUrl('/list');
+        this._Router.navigateByUrl(`/profile/${res.newStudent._id}`);
         this.blockUI.stop();
       });
     } else {
